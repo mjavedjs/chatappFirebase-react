@@ -11,7 +11,7 @@ const Loading = () => {
       if (user) {
         // User is signed in
         console.log("User is logged in:", user);
-        navigate('/chat/:uid'); // ✅ navigate to chat or home page
+        navigate('/home'); // ✅ navigate to chat or home page
         
       } else {
         // User is signed out
