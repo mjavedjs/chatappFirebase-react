@@ -12,7 +12,7 @@ const Singin = () => {
   .then((userCredential) => {
     const user = userCredential.user;
      console.log(user);
-     navigate('/Chat')
+     navigate('/chat')
     // ...
   })
   .catch((error) => {
