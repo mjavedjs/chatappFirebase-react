@@ -3,7 +3,7 @@ import Loading from "./screens/Loading";
 import Singin from "./screens/Singin";
 import Singup from "./screens/Singup";
 import Home from "./screens/Home";
-import Chat from "./screens/chat";
+import Chat from "./screens/Chat"
 const router = createBrowserRouter([
    {path:'/',element:<Loading/>},
    { path: '/home', element: <Home /> },
