@@ -18,7 +18,8 @@ const Singin = () => {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorCode)
+    console.log(errorCode);
+    console.log(errorMessage)
   });
 
     console.log('Email:', email);

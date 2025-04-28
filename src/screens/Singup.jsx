@@ -22,7 +22,7 @@ const Singup = () => {
         const formData = new FormData();
         formData.append('file', imageFile);
         formData.append('upload_preset', 'my_preset');  
-        formData.append('cloud_name', 'dhro6nafp'); // 🔥 your Cloudinary cloud name
+        formData.append('cloud_name', 'dhro6nafp'); 
   
         const res = await fetch('https://api.cloudinary.com/v1_1/dhro6nafp/image/upload', {
           method: 'POST',
@@ -30,19 +30,19 @@ const Singup = () => {
         });
   
         const data = await res.json();
-        imageUrl = data.secure_url; // ✅ get uploaded image URL
+        imageUrl = data.secure_url;
         console.log('Uploaded image URL:', imageUrl);
       }
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
       const docRef = await addDoc(collection(db, "users"), {
         name,
         email,
         password,
-        time:Date.now(),
+        time: Date.now(),
+        createdAt: new Date(),
         uid: auth.currentUser.uid,
-        img:imageUrl,
+        img: imageUrl,
       });
       console.log("User signed up & Document written with ID: ", docRef.id);
       navigate("/home"); // Redirect to home after success
