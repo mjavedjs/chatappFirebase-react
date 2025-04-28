@@ -45,7 +45,7 @@ const Singup = () => {
         img: imageUrl,
       });
       console.log("User signed up & Document written with ID: ", docRef.id);
-      navigate("/home"); // Redirect to home after success
+      navigate("/home"); 
     } catch (error) {
       console.error("Error during signup:", error.message);
     }
