@@ -3,6 +3,7 @@ import { collection, query, getDocs } from "firebase/firestore";
 import { db, auth } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from "firebase/auth";
+import Nav from '../components/Navbar';
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -35,6 +36,8 @@ const Home = () => {
   }, []);
 
   return (
+    <>
+    <Nav />
     <div className="bg-gray-100 min-h-screen">
       <div className="max-w-4xl mx-auto bg-white  rounded-xl shadow-lg mt-10">
         <div className="flex items-center justify-between  bg-blue-600 text-white p-4 rounded-t-xl">
@@ -68,6 +71,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

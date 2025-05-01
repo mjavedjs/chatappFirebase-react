@@ -64,6 +64,8 @@ const Chat = () => {
   }, [uid]);
 
   return (
+    <>
+   
     <div className="bg-gradient-to-br from-indigo-100 via-white to-indigo-100 min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl flex flex-col h-[90vh] overflow-hidden">
 
@@ -118,6 +120,7 @@ const Chat = () => {
 
       </div>
     </div>
+    </>
   );
 };
 
