@@ -38,9 +38,6 @@ const Navbar = () => {
             </Link>
           </div>
           
-          {/* Auth Buttons */}
-  
-          
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button className="outline-none mobile-menu-button">
