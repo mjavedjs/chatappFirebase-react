@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { db, auth } from '../firebaseConfig';
 import { useParams } from 'react-router-dom';
-import { collection, addDoc, query, where, getDocs ,orderBy} from "firebase/firestore";
-
+import { collection, addDoc, query, where, getDocs ,orderBy, Timestamp} from "firebase/firestore";
+import moment from 'moment';
+import dp from '../assets/dp.webp'
 const Chat = () => {
   const { uid } = useParams();
   const currentUid = auth.currentUser?.uid;
@@ -12,13 +13,13 @@ const Chat = () => {
   const [prevdata, setPrevData] = useState([]);
 
   const getUserData = async () => {
-    if (!text.trim()) return; // prevent empty messages
+    if (!text.trim()) return; 
     try {
       const docRef = await addDoc(collection(db, "userschat"), {
         texts: text,
         currentUid: currentUid,
         uid: uid,
-        createdAt: new Date()
+        createdAt:Timestamp.now()
       });
       console.log("Document written with ID: ", docRef.id);
       setText('');
@@ -46,7 +47,7 @@ const Chat = () => {
     const q = query(
       collection(db, "userschat"), 
       where("uid", "==", uid), 
-      orderBy("createdAt", "asc") // Ascending order
+      orderBy("createdAt", "asc") 
     );
     
     const querySnapshot = await getDocs(q);
@@ -73,8 +74,8 @@ const Chat = () => {
   .map((res) => (
     <div key={res.uid} className="flex items-center bg-blue-600 text-white p-5 rounded-t-3xl mb-2">
       <img 
-        src={res.img ? res.img : 'NO IMGAG'} 
-        alt="User Avatar" 
+        src={res.img ? res.img : dp} 
+        alt="" 
         className="w-12 h-12 rounded-full mr-4 shadow-md object-cover"
       />
       <h2 className="text-2xl font-bold">{res.name}</h2>
@@ -87,10 +88,13 @@ const Chat = () => {
             data.map((item, index) => (
               <div 
                 key={index}
-                className={`flex ${item.currentUid === currentUid ? 'justify-start' : 'justify-end'}`}
-              >
+                className={`flex ${item.currentUid === currentUid ? 'justify-start' : 'justify-end'}`}>
                 <div className={`max-w-xs md:max-w-sm px-5 py-3 rounded-2xl shadow ${item.currentUid === currentUid ? 'bg-indigo-500 text-white' : 'bg-gray-300 text-black'}`}>
                   {item.texts}
+             <p>{moment(item.createdAt.toDate()).fromNow()}</p>
+              <div>
+                 
+              </div>
                 </div>
               </div>
             ))

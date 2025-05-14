@@ -3,7 +3,7 @@ import { collection, query, getDocs } from "firebase/firestore";
 import { db, auth } from '../firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from "firebase/auth";
-
+import dp from '../assets/dp.webp'
 const Home = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
@@ -56,7 +56,7 @@ const Home = () => {
                 onClick={() => navigate(`/chat/${user.uid}`)}
               >
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-400 rounded-full overflow-hidden">
-                  <img src={user.img} alt="User" className="w-full h-full object-cover" />
+                  <img src={user.img ? user.img : dp} alt="User" className="w-full h-full object-cover" />
                 </div>
                 <div className="ml-4">
                   <h3 className="text-xl font-medium">{user.name}</h3>
